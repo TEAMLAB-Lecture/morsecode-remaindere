@@ -174,7 +174,7 @@ def get_cleaned_english_sentence(raw_english_sentence):
 
     new_eng_st = new_eng_st.strip()
     
-    new_eng_list = [ch for ch in new_eng_st if ch.isalpha() == True or ch == " "]
+    new_eng_list = [ch for ch in new_eng_st if ch.isalpha() or ch.isdigit() == True or ch == " "]
     
     result = "".join(new_eng_list)
 
@@ -243,7 +243,7 @@ def encoding_character(english_character):
     return result
     # ==================================
 
-
+import re
 def decoding_sentence(morse_sentence):
     """
     Input:
@@ -263,7 +263,9 @@ def decoding_sentence(morse_sentence):
     """
     # ===Modify codes below=============
     # 조건에 따라 변환되어야 할 결과를 result 변수에 할당 또는 필요에 따라 자유로운 수정
-    
+
+    pattern = re.compile(r'\s\s+')
+    morse_sentence = re.sub(pattern, '  ', morse_sentence)
     morse_sentence = morse_sentence.replace("  ","B")
     morse_word_list = morse_sentence.split("B")
     #print(morse_word_list)
@@ -305,15 +307,19 @@ def encoding_sentence(english_sentence):
     # ===Modify codes below=============
     # 조건에 따라 변환되어야 할 결과를 result 변수에 할당 또는 필요에 따라 자유로운 수정
     
-    #input_word_list = []
-    # for ch in english_sentence :
-    #     if ch.isalpha() == True or ch == " " : #alphabet and blank
-    #         input_word_list.append(ch)
-    
-    # input_word_list = (("".join(input_word_list).upper()).split())
-    # print(input_word_list)
+    pattern = re.compile(r'\s\s+')
+    english_sentence = re.sub(pattern, ' ', english_sentence)
 
-    input_word_list = (get_cleaned_english_sentence(english_sentence).upper()).split()
+    input_word_list = []
+    for ch in english_sentence :
+        if ch.isalpha() == True or ch == " " : #alphabet and blank
+            input_word_list.append(ch)
+    
+    input_word_list = (("".join(input_word_list).upper()).split())
+    print(input_word_list)
+
+    #input_word_list = (get_cleaned_english_sentence(english_sentence).upper()).split()
+
     morse_list = []
     for word in input_word_list :
         morse_word_list = []
