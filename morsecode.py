@@ -265,7 +265,7 @@ def decoding_sentence(morse_sentence):
     # 조건에 따라 변환되어야 할 결과를 result 변수에 할당 또는 필요에 따라 자유로운 수정
 
     pattern = re.compile(r'\s\s+')
-    morse_sentence = re.sub(pattern, '  ', morse_sentence)
+    morse_sentence = re.sub(pattern, ' ', morse_sentence)
     morse_sentence = morse_sentence.replace("  ","B")
     morse_word_list = morse_sentence.split("B")
     #print(morse_word_list)
@@ -316,7 +316,7 @@ def encoding_sentence(english_sentence):
             input_word_list.append(ch)
     
     input_word_list = (("".join(input_word_list).upper()).split())
-    print(input_word_list)
+    #print(input_word_list)
 
     #input_word_list = (get_cleaned_english_sentence(english_sentence).upper()).split()
 
