@@ -266,6 +266,7 @@ def decoding_sentence(morse_sentence):
 
     pattern = re.compile(r'\s\s+')
     morse_sentence = re.sub(pattern, ' ', morse_sentence)
+
     morse_sentence = morse_sentence.replace("  ","B")
     morse_word_list = morse_sentence.split("B")
     #print(morse_word_list)
@@ -307,8 +308,8 @@ def encoding_sentence(english_sentence):
     # ===Modify codes below=============
     # 조건에 따라 변환되어야 할 결과를 result 변수에 할당 또는 필요에 따라 자유로운 수정
     
-    pattern = re.compile(r'\s\s+')
-    english_sentence = re.sub(pattern, ' ', english_sentence)
+    # pattern = re.compile(r'\s\s+')
+    # english_sentence = re.sub(pattern, '  ', english_sentence)
 
     input_word_list = []
     for ch in english_sentence :
@@ -326,7 +327,7 @@ def encoding_sentence(english_sentence):
         for alpha_char in word :
             morse_word_list.append(encoding_character(alpha_char))
         morse_list.append(" ".join(morse_word_list))
-        #morse_list.append(" ")
+        morse_list.append("")
 
     result = " ".join(morse_list)
     result = result.strip()
